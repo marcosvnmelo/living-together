@@ -1,0 +1,47 @@
+{
+  "folders": [
+    {
+      "path": "mobile"
+    },
+    {
+      "path": "backend"
+    }
+  ],
+  "settings": {
+    "java.import.gradle.enabled": false,
+    "java.import.exclusions": [
+      "**\\node_modules\\**",
+      "**\\.metadata\\**",
+      "**\\archetype-resources\\**",
+      "**\\META-INF\\maven\\**",
+      "flutter\\home\\**",
+      "**/home/android/**"
+    ]
+  },
+  "tasks": {
+    "version": "2.0.0",
+    "tasks": [
+      {
+        "label": "Run Flutter Dev",
+        "type": "shell",
+        "command": "flutter run",
+        "presentation": {
+          "reveal": "always",
+          "panel": "new",
+          "group": "develop"
+        }
+      },
+      {
+        "label": "Run Quarkus Dev",
+        "type": "shell",
+        "command": "cd ..\\backend && .\\mvnw compile quarkus:dev",
+        "presentation": {
+          "reveal": "always",
+          "panel": "new",
+          "group": "develop"
+        },
+        "problemMatcher": []
+      }
+    ]
+  }
+}

@@ -1,0 +1,117 @@
+# schema.graphql
+
+type Expense {
+  "ISO-8601"
+  date: Date
+  description: String
+  house: House
+  id: BigInteger
+  name: String
+  value: Float
+}
+
+type House {
+  address: String
+  expenses: [Expense]
+  id: BigInteger
+  manager: User
+  name: String
+  residents: [User]
+  tasks: [Task]
+}
+
+"Mutation root"
+type Mutation {
+  createExpense(data: CreateExpenseDTOInput!): Expense
+  createHouse(data: CreateHouseDTOInput!): House
+  createTask(data: CreateTaskDTOInput!): Task
+  deleteExpense(id: String!): Boolean
+  deleteHouse(id: BigInteger!): Boolean
+  deleteTask(id: BigInteger!): Boolean
+  updateExpense(data: UpdateExpenseDTOInput!): Expense
+  updateHouse(data: UpdateHouseDTOInput!): House
+  updateTask(data: UpdateTaskDTOInput!): Task
+}
+
+"Query root"
+type Query {
+  findExpenseById(id: String!): Expense
+  findHouseById(id: BigInteger!): House
+  findTaskById(id: BigInteger!): Task
+  findUserById(id: BigInteger!): User
+  listAllExpenses: [Expense]
+  listAllHouse: [House]
+  listAllTask: [Task]
+  listAllUser: [User]
+}
+
+type Task {
+  "ISO-8601"
+  date: Date
+  description: String
+  done: Boolean
+  house: House
+  id: BigInteger
+  name: String
+  user: User
+}
+
+type User {
+  email: String
+  house: House
+  id: BigInteger
+  manager: Boolean
+  name: String
+  nickname: String
+  resident: Boolean
+}
+
+input CreateExpenseDTOInput {
+  "ISO-8601"
+  date: Date!
+  description: String
+  name: String!
+  value: Float!
+}
+
+input CreateHouseDTOInput {
+  address: String
+  name: String!
+  userId: String!
+}
+
+input CreateTaskDTOInput {
+  "ISO-8601"
+  date: Date!
+  description: String
+  houseId: BigInteger!
+  name: String!
+  responsibleUserId: BigInteger
+}
+
+input UpdateExpenseDTOInput {
+  "ISO-8601"
+  date: Date
+  description: String
+  id: String!
+  name: String
+  value: Float
+}
+
+input UpdateHouseDTOInput {
+  address: String
+  id: BigInteger
+  managerId: String
+  name: String
+}
+
+input UpdateTaskDTOInput {
+  "ISO-8601"
+  date: Date
+  description: String
+  done: Boolean
+  houseId: BigInteger
+  id: String!
+  name: String
+  responsibleUserId: BigInteger
+}
