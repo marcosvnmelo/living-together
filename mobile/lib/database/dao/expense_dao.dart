@@ -42,4 +42,10 @@ class ExpenseDao {
 
     return expenses;
   }
+
+  Future<void> removeAll() async {
+    final Database db = await getDatabase();
+
+    await db.delete(_tableName, where: '1 = 1');
+  }
 }
