@@ -20,7 +20,7 @@ class Dashboard extends StatelessWidget {
               padding: const EdgeInsets.all(8.0),
               child: Row(
                 children: [
-                  const DashboardOption(
+                  DashboardOption(
                     title: 'Expenses',
                     icon: Icons.attach_money,
                     page: ExpenseList(),
@@ -36,10 +36,12 @@ class Dashboard extends StatelessWidget {
 class DashboardOption extends StatelessWidget {
   final String title;
   final IconData icon;
+  final Widget page;
 
   const DashboardOption({
     required this.title,
     required this.icon,
+    required this.page,
     Key? key,
   }) : super(key: key);
 
@@ -52,7 +54,7 @@ class DashboardOption extends StatelessWidget {
           Navigator.push(
             context,
             MaterialPageRoute(
-              builder: (context) => ContactsList(),
+              builder: (context) => page,
             ),
           );
         },
